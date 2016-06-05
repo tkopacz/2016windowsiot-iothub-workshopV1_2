@@ -1,0 +1,348 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Fritzing (http://www.fritzing.org/) -->
+<netlist date="Wed Mar 2 10:49:41 2016" sketch="Connections.fzz">
+ <net>
+  <connector name="wiper" id="connector1">
+   <part label="R1" title="Rotary Potentiometer (Small)" id="18681460"/>
+  </connector>
+  <connector name="pin1" id="connector0">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="P$2" id="connector1">
+   <part label="R5" title="PHOTOCELL" id="18683200"/>
+  </connector>
+  <connector name="Pin 0" id="connector0">
+   <part label="R3" title="560Ω Resistor" id="18682870"/>
+  </connector>
+  <connector name="pin3" id="connector2">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="P$1" id="connector0">
+   <part label="R5" title="PHOTOCELL" id="18683200"/>
+  </connector>
+  <connector name="Pin 1" id="connector1">
+   <part label="R6" title="560Ω Resistor" id="854212670"/>
+  </connector>
+  <connector name="VDD" id="connector7">
+   <part label="SENSOR1" title="TCS34725 RGB Color Sensor" id="854264600"/>
+  </connector>
+  <connector name="VIN" id="connector0">
+   <part label="Breakout2" title="BMP280" id="854208620"/>
+  </connector>
+  <connector name="leg2" id="connector2">
+   <part label="R2" title="Rotary Potentiometer (Small)" id="18681480"/>
+  </connector>
+  <connector name="pin16" id="connector15">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+  <connector name="pin15" id="connector14">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+  <connector name="3v3" id="connector0">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="leg2" id="connector2">
+   <part label="R1" title="Rotary Potentiometer (Small)" id="18681460"/>
+  </connector>
+  <connector name="3V3" id="connector8">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="pin10" id="connector9">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+  <connector name="GIPO8" id="connector28">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO10" id="connector9">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="pin11" id="connector10">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO9" id="connector10">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="pin12" id="connector11">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="pin13" id="connector12">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+  <connector name="GIPO11" id="connector11">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="Pin 1" id="connector1">
+   <part label="R3" title="560Ω Resistor" id="18682870"/>
+  </connector>
+  <connector name="leg1" id="connector0">
+   <part label="R2" title="Rotary Potentiometer (Small)" id="18681480"/>
+  </connector>
+  <connector name="pin14" id="connector13">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+  <connector name="GND" id="connector6">
+   <part label="SENSOR1" title="TCS34725 RGB Color Sensor" id="854264600"/>
+  </connector>
+  <connector name="pin9" id="connector8">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+  <connector name="leg1" id="connector0">
+   <part label="R1" title="Rotary Potentiometer (Small)" id="18681460"/>
+  </connector>
+  <connector name="GND" id="connector2">
+   <part label="Breakout2" title="BMP280" id="854208620"/>
+  </connector>
+  <connector name="GND" id="connector37">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="GND" id="connector19">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="GND" id="connector4">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="GND" id="connector23">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="GND" id="connector25">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="GND" id="connector30">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="GND" id="connector33">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="GND" id="connector12">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="pin2" id="connector1">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+  <connector name="wiper" id="connector1">
+   <part label="R2" title="Rotary Potentiometer (Small)" id="18681480"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="cathode" id="connector0">
+   <part label="LED1" title="Red (633nm) LED" id="854212640"/>
+  </connector>
+  <connector name="GIPO26" id="connector18">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GPIO2" id="connector1">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="SDI" id="connector5">
+   <part label="Breakout2" title="BMP280" id="854208620"/>
+  </connector>
+  <connector name="SDA" id="connector3">
+   <part label="SENSOR1" title="TCS34725 RGB Color Sensor" id="854264600"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GPIO3" id="connector2">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="SCK" id="connector3">
+   <part label="Breakout2" title="BMP280" id="854208620"/>
+  </connector>
+  <connector name="SCL" id="connector4">
+   <part label="SENSOR1" title="TCS34725 RGB Color Sensor" id="854264600"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="anode" id="connector1">
+   <part label="LED1" title="Red (633nm) LED" id="854212640"/>
+  </connector>
+  <connector name="Pin 0" id="connector0">
+   <part label="R6" title="560Ω Resistor" id="854212670"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="CS" id="connector6">
+   <part label="Breakout2" title="BMP280" id="854208620"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="SDO" id="connector4">
+   <part label="Breakout2" title="BMP280" id="854208620"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="3Vo" id="connector1">
+   <part label="Breakout2" title="BMP280" id="854208620"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="pin8" id="connector7">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="pin7" id="connector6">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="pin6" id="connector5">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="pin5" id="connector4">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="pin4" id="connector3">
+   <part label="MCP3008" title="MCP3008" id="78840"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="3V3" id="connector5">
+   <part label="SENSOR1" title="TCS34725 RGB Color Sensor" id="854264600"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="INT" id="connector2">
+   <part label="SENSOR1" title="TCS34725 RGB Color Sensor" id="854264600"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="LED" id="connector1">
+   <part label="SENSOR1" title="TCS34725 RGB Color Sensor" id="854264600"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO13" id="connector16">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO6" id="connector15">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="5V" id="connector39">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+  <connector name="5V" id="connector38">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO5" id="connector14">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="ID_SD" id="connector13">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO14" id="connector36">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO15" id="connector35">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO18" id="connector34">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO23" id="connector32">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO24" id="connector31">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO25" id="connector29">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO7" id="connector27">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="ID_SC" id="connector26">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO12" id="connector24">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO16" id="connector22">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO20" id="connector21">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO21" id="connector20">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO22" id="connector7">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO27" id="connector6">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO17" id="connector5">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO4" id="connector3">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+ <net>
+  <connector name="GIPO19" id="connector17">
+   <part label="Raspberry Pi1" title="Raspberry Pi 2" id="88240"/>
+  </connector>
+ </net>
+</netlist>

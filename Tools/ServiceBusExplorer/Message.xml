@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Message xmlns="http://schemas.microsoft.com/servicebusexplorer">
+  <Date>Tuesday, March 1, 2016 3:59:41 PM</Date>
+  <Content><![CDATA[{'deviceId':'1', 'value':'25'}]]></Content>
+</Message>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Properties xmlns="http://schemas.microsoft.com/servicebusexplorer">
+  <Property Key="MachineName" Type="String" Value="BABOSBIRD" />
+  <Property Key="UserName" Type="String" Value="paolos" />
+  <Property Key="Country" Type="String" Value="Italy" />
+  <Property Key="City" Type="String" Value="Pisa" />
+  <Property Key="Method" Type="String" Value="Static2013" />
+  <Property Key="Ticker" Type="String" Value="MSFT" />
+  <Property Key="Count" Type="Int32" Value="16" />
+</Properties>
