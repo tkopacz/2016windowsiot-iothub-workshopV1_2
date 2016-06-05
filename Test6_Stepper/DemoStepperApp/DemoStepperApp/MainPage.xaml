@@ -1,0 +1,15 @@
+﻿<Page
+    x:Class="DemoStepperApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DemoStepperApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="cmdRight" Content="&lt;" HorizontalAlignment="Left" Margin="38,73,0,0" VerticalAlignment="Top" Height="173" Width="75" FontSize="64" Click="cmdRight_Click"/>
+        <Button x:Name="cmdLeft" Content="&gt;" HorizontalAlignment="Left" Margin="158,73,0,0" VerticalAlignment="Top" Height="173" Width="75" FontSize="64" Click="cmdLeft_Click"/>
+
+    </Grid>
+</Page>

@@ -5,7 +5,10 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Devices.Adc;
+using Windows.Devices.Enumeration;
 using Windows.Devices.Gpio;
+using Windows.Devices.SerialCommunication;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -61,6 +64,38 @@ namespace MainIoTApp
         AdcChannel[] m_adcChannel;
 
         TCS34725 m_tcs;
+
+        //-----------------------------------------------------------------------
+        //For Arduino Leonardo - COM
+        SerialDevice m_serialPort = null;
+        DataWriter m_dataWriteObject;
+
+        //-----------------------------------------------------------------------
+        //For Stepper
+        byte[,] m_Seq = new byte[,] {
+            {1, 0, 0, 0},
+            {1, 1, 0, 0},
+            {0, 1, 0, 0},
+            {0, 1, 1, 0},
+            {0, 0, 1, 0},
+            {0, 0, 1, 1},
+            {0, 0, 0, 1},
+            {1, 0, 0, 1}
+        };
+
+
+        int m_StepCount = 8;
+        int m_StepDir = 1; //Set to 1 or 2 for clockwise | Set to -1 or -2 for anti-clockwise
+
+        //PINs on stepper driver:    1  2  3  4
+        //GPIO on RPI           :    5  6 13 19  
+        //PINs on RPI2          :   29 31 33 35
+        //https://developer.microsoft.com/en-us/windows/iot/win10/samples/pinmappingsrpi2
+        int[] pins = new int[4] { 5, 6, 13, 19 };
+        GpioPin[] pinsStepper1;
+        int idx = 0;
+        int repeatSteps = 200;
+
         /// <summary>
         /// Client for IoT Hub SDK
         /// </summary>
@@ -88,7 +123,6 @@ namespace MainIoTApp
                 //0.IoTHub client
                 m_clt = DeviceClient.CreateFromConnectionString(TKConnectionString, TransportType.Http1);
                 await m_clt.SendEventAsync(new Message(new byte[] { 1, 2, 3 }));
-                Task.Run(() => ReceiveDataFromAzure()); //Loop. 
 
                 //0. Cache for message
                 m_mSPI = new MSPI();
@@ -126,6 +160,47 @@ namespace MainIoTApp
                 m_tSPI = new DispatcherTimer();
                 m_tSPI.Interval = TimeSpan.FromMilliseconds(1000); //Caution - we have 8 000 messages / day. So - LIMIT RATE
                 m_tSPI.Tick += M_tSPI_Tick;
+
+                //5. Serial i Arduino (Leonardo)
+                string aqs = SerialDevice.GetDeviceSelector();
+                var dis = await DeviceInformation.FindAllAsync(aqs);
+                DeviceInformation entry = null;
+                foreach(var e in dis)
+                {
+                    //Arduino Leonardo Id = "\\\\?\\USB#VID_2A03&PID_8036#5&3753427a&0&2#{86e0d1e0-8089-11d0-9ce4-08003e301f73}"
+                    if (e.Id== "\\\\?\\USB#VID_2A03&PID_8036#5&3753427a&0&2#{86e0d1e0-8089-11d0-9ce4-08003e301f73}")
+                    {
+                        entry = e;
+                        break;
+                    }
+                }
+                if (entry != null)
+                {
+                    m_serialPort = await SerialDevice.FromIdAsync(entry.Id);
+
+                    // Configure serial settings
+                    m_serialPort.WriteTimeout = TimeSpan.FromMilliseconds(1000);
+                    m_serialPort.ReadTimeout = TimeSpan.FromMilliseconds(1000);
+                    m_serialPort.BaudRate = 9600;
+                    m_serialPort.Parity = SerialParity.None;
+                    m_serialPort.StopBits = SerialStopBitCount.One;
+                    m_serialPort.DataBits = 8;
+                    m_serialPort.Handshake = SerialHandshake.None;
+                    m_dataWriteObject = new DataWriter(m_serialPort.OutputStream);
+                }
+
+                //6. Stepper & GPIO
+                pinsStepper1 = new GpioPin[4];
+                for (int i = 0; i <= 3; i++)
+                {
+                    pinsStepper1[i] = gpio.OpenPin(pins[i]);
+                    pinsStepper1[i].SetDriveMode(GpioPinDriveMode.Output);
+                }
+
+
+                //7. Receive
+                Task.Run(() => ReceiveDataFromAzure()); //Loop. 
+
 
                 //Can enable UI
                 txtAll.IsEnabled = txtSPI.IsEnabled = tgSend.IsEnabled = true;
@@ -210,6 +285,24 @@ namespace MainIoTApp
             }
         }
 
+        /// <summary>
+        /// Send stepper sequence
+        /// </summary>
+        public void doStep()
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (m_Seq[idx, j] == 0)
+                {
+                    pinsStepper1[j].Write(GpioPinValue.Low);
+                }
+                else
+                {
+                    pinsStepper1[j].Write(GpioPinValue.High);
+                }
+            }
+        }
+
         private void tgSend_Toggled(object sender, RoutedEventArgs e)
         {
             if (tgSend.IsOn)
@@ -258,43 +351,87 @@ namespace MainIoTApp
                         if (receivedMessage != null)
                         {
                             messageData = System.Text.Encoding.ASCII.GetString(receivedMessage.GetBytes());
-                            //Wykonanie polecenia
+                            //Do operation
                             if (messageData.Length >= 2)
                             {
-                                await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                                await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
                                 {
                                     double val;
                                     switch (messageData[0])
                                     {
+                                        #region Light (diode)
                                         case 'L':
-                                        //Light
-                                        if (messageData[1] == '0')
+                                            //Light
+                                            if (messageData[1] == '0')
                                                 m_blinkValue = GpioPinValue.High;
                                             else
                                                 m_blinkValue = GpioPinValue.Low;
                                             m_blink.Write(m_blinkValue);
                                             break;
+                                        #endregion
+                                        #region Telemetry - parameters
                                         case 'A':
-                                        //All messages - interval
-                                        if (double.TryParse(messageData.Substring(1), out val))
+                                            //All messages - interval
+                                            if (double.TryParse(messageData.Substring(1), out val))
                                             {
                                                 txtAll.Text = val.ToString();
                                             }
                                             break;
                                         case 'S':
-                                        //SPI messages - interval
-                                        if (double.TryParse(messageData.Substring(1), out val))
+                                            //SPI messages - interval
+                                            if (double.TryParse(messageData.Substring(1), out val))
                                             {
                                                 txtSPI.Text = val.ToString();
                                             }
                                             break;
                                         case 'O':
-                                        //On / Off
-                                        if (messageData[1] == '0')
+                                            //On / Off
+                                            if (messageData[1] == '0')
                                                 tgSend.IsOn = false;
                                             else
                                                 tgSend.IsOn = true;
                                             break;
+                                        #endregion
+                                        #region Neopixel                                        
+                                        case 'N':
+                                            //Neopixel through On / Off
+                                            if (messageData[1] == '1')
+                                            {
+                                                m_dataWriteObject.WriteString("E"); //To turn on NeoPixel
+                                            }
+                                            else
+                                            {
+                                                m_dataWriteObject.WriteString("O"); //To turn off NeoPixel
+                                            }
+                                            await m_dataWriteObject.StoreAsync();
+                                            break;
+                                        #endregion
+                                        #region Stepper
+                                        case 'Q':
+                                            //Stepper LEFT
+                                            int.TryParse(messageData.Substring(1), out repeatSteps);
+                                            for (int i = 0; i < repeatSteps; i++)
+                                            {
+                                                idx += m_StepDir;
+                                                if (idx >= m_StepCount) idx -= m_StepCount;
+                                                if (idx < 0) idx += m_StepCount;
+                                                doStep();
+                                                Task.Delay(10).Wait();
+                                            }
+                                            break;
+                                        case 'W':
+                                            int.TryParse(messageData.Substring(1), out repeatSteps);
+                                            //Stepper RIGHT
+                                            for (int i = 0; i < repeatSteps; i++)
+                                            {
+                                                idx -= m_StepDir;
+                                                if (idx >= m_StepCount) idx -= m_StepCount;
+                                                if (idx < 0) idx += m_StepCount;
+                                                doStep();
+                                                Task.Delay(10).Wait();
+                                            }
+                                            break;
+                                        #endregion
                                         default:
                                             break;
                                     }
@@ -303,7 +440,7 @@ namespace MainIoTApp
                             //await m_clt.RejectAsync(receivedMessage);
                             //await m_clt.AbandonAsync(receivedMessage); - reject, will be redelivered
                             //Confirm
-                            await m_clt.CompleteAsync(receivedMessage); //potwierdza odebranie
+                            await m_clt.CompleteAsync(receivedMessage); //commit receive & process
                         }
                     }
                     catch (Exception ex)

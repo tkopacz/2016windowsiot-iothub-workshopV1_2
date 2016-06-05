@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="MainIoTApp" Publisher="CN=tkopacz" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="0e3496f5-76a0-422a-abf5-30089385da3c" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="DemoStepperApp" Publisher="CN=tkopacz" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="b8409339-7d28-4fee-9e8c-ee708adffe2f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>MainIoTApp</DisplayName>
+    <DisplayName>DemoStepperApp</DisplayName>
     <PublisherDisplayName>tkopacz</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -14,8 +14,8 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MainIoTApp.App">
-      <uap:VisualElements DisplayName="MainIoTApp" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="MainIoTApp" BackgroundColor="transparent">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="DemoStepperApp.App">
+      <uap:VisualElements DisplayName="DemoStepperApp" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="DemoStepperApp" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
@@ -24,10 +24,5 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
-    <DeviceCapability Name="serialcommunication">
-      <Device Id="any">
-        <Function Type="name:serialPort" />
-      </Device>
-    </DeviceCapability>
   </Capabilities>
 </Package>

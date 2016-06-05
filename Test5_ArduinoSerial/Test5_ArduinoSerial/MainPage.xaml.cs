@@ -52,17 +52,30 @@ namespace Test5_ArduinoSerial
             serialPort.DataBits = 8;
             serialPort.Handshake = SerialHandshake.None;
 
-            dataWriteObject = new DataWriter(serialPort.OutputStream);
-            dataWriteObject.WriteString("E"); //To turn on NeoPixel
-            var storeAsyncTask = dataWriteObject.StoreAsync().AsTask();
-
-            UInt32 bytesWritten = await storeAsyncTask;
-            if (bytesWritten > 0)
-            {
-            }
 
 
             base.OnNavigatedTo(e);
+            Switch();
+           
+        }
+
+        private async void Switch()
+        {
+            while (true)
+            {
+                dataWriteObject = new DataWriter(serialPort.OutputStream);
+                dataWriteObject.WriteString("E"); //To turn on NeoPixel
+                var storeAsyncTask = dataWriteObject.StoreAsync().AsTask();
+
+                UInt32 bytesWritten = await storeAsyncTask;
+                if (bytesWritten > 0) { /*OK*/ }
+                await Task.Delay(2000);
+                dataWriteObject.WriteString("O"); //To turn off NeoPixel
+                storeAsyncTask = dataWriteObject.StoreAsync().AsTask();
+                bytesWritten = await storeAsyncTask;
+                if (bytesWritten > 0) { /*OK*/ }
+                await Task.Delay(2000);
+            }
         }
     }
 }
