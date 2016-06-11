@@ -208,6 +208,7 @@ namespace MainIoTApp
             }
             catch (Exception ex)
             {
+                //PowerShell and Set-Date "2016-06-08 03:46"
                 Debug.WriteLine(ex.ToString());
                 txtState.Text = ex.ToString();
             }
@@ -281,6 +282,7 @@ namespace MainIoTApp
             }
             catch (Exception ex)
             {
+                //PowerShell and Set-Date "2016-06-08 03:46"
                 txtState.Text = ex.ToString();
             }
         }
@@ -445,6 +447,7 @@ namespace MainIoTApp
                     }
                     catch (Exception ex)
                     {
+                        //PowerShell and Set-Date "2016-06-08 03:46"
                         txtState.Text = ex.ToString();
                     }
                 }

@@ -1,0 +1,5 @@
+net start WinRM
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value 192.168.10.3
+Enter-PsSession -ComputerName 192.168.10.3 -Credential 192.168.10.3\Administrator
+Set-Date "2016-03-22 20:21"
+Set-Date "2016-06-08 03:46"
