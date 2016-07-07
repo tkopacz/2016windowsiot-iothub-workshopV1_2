@@ -228,6 +228,7 @@ namespace MainIoTApp
             m_mSPI.Light = m_adcChannel[2].ReadRatio();
             m_mSPI.Dt = DateTime.UtcNow;
             var obj = JsonConvert.SerializeObject(m_mSPI);
+            Debug.WriteLine(obj);
             try
             {
                 if (m_clt!=null)
@@ -272,6 +273,7 @@ namespace MainIoTApp
 
             m.Dt = DateTime.UtcNow;
             var obj = JsonConvert.SerializeObject(m);
+            Debug.WriteLine(obj);
             try
             {   if (m_clt != null)
                 {
