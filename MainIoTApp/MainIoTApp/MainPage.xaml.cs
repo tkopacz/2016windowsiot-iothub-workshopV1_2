@@ -28,7 +28,7 @@ namespace MainIoTApp
 
     public sealed partial class MainPage : Page
     {
-        const string TKConnectionString = "HostName=pltkdpepliot2016.azure-devices.net;DeviceId=D01;SharedAccessKey=CupfKeNmHnuL7gOMsYUX0dxpx0Dyqf0QNHgnp3NgnPo=";
+        const string TKConnectionString = "---";
         const string DeviceId = "D01";
     }
 

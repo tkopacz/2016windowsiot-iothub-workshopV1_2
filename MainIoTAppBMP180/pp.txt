@@ -1,1 +1,1 @@
-HostName=pltkdpepliot2016.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=V65o7wxP6NispZ+IYef7i4hnMBDk5c6PAd0uUrtdr2k=
+--
