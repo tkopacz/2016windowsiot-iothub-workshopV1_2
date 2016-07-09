@@ -166,40 +166,40 @@ namespace MainIoTApp
                 m_tSPI.Tick += M_tSPI_Tick;
 
                 //5. Serial i Arduino (Leonardo)
-                string aqs = SerialDevice.GetDeviceSelector();
-                var dis = await DeviceInformation.FindAllAsync(aqs);
-                DeviceInformation entry = null;
-                foreach(var e in dis)
-                {
-                    //Arduino Leonardo Id = "\\\\?\\USB#VID_2A03&PID_8036#5&3753427a&0&2#{86e0d1e0-8089-11d0-9ce4-08003e301f73}"
-                    if (e.Id== "\\\\?\\USB#VID_2A03&PID_8036#5&3753427a&0&2#{86e0d1e0-8089-11d0-9ce4-08003e301f73}")
-                    {
-                        entry = e;
-                        break;
-                    }
-                }
-                if (entry != null)
-                {
-                    m_serialPort = await SerialDevice.FromIdAsync(entry.Id);
+                //string aqs = SerialDevice.GetDeviceSelector();
+                //var dis = await DeviceInformation.FindAllAsync(aqs);
+                //DeviceInformation entry = null;
+                //foreach(var e in dis)
+                //{
+                //    //Arduino Leonardo Id = "\\\\?\\USB#VID_2A03&PID_8036#5&3753427a&0&2#{86e0d1e0-8089-11d0-9ce4-08003e301f73}"
+                //    if (e.Id== "\\\\?\\USB#VID_2A03&PID_8036#5&3753427a&0&2#{86e0d1e0-8089-11d0-9ce4-08003e301f73}")
+                //    {
+                //        entry = e;
+                //        break;
+                //    }
+                //}
+                //if (entry != null)
+                //{
+                //    m_serialPort = await SerialDevice.FromIdAsync(entry.Id);
 
-                    // Configure serial settings
-                    m_serialPort.WriteTimeout = TimeSpan.FromMilliseconds(1000);
-                    m_serialPort.ReadTimeout = TimeSpan.FromMilliseconds(1000);
-                    m_serialPort.BaudRate = 9600;
-                    m_serialPort.Parity = SerialParity.None;
-                    m_serialPort.StopBits = SerialStopBitCount.One;
-                    m_serialPort.DataBits = 8;
-                    m_serialPort.Handshake = SerialHandshake.None;
-                    m_dataWriteObject = new DataWriter(m_serialPort.OutputStream);
-                }
+                //    // Configure serial settings
+                //    m_serialPort.WriteTimeout = TimeSpan.FromMilliseconds(1000);
+                //    m_serialPort.ReadTimeout = TimeSpan.FromMilliseconds(1000);
+                //    m_serialPort.BaudRate = 9600;
+                //    m_serialPort.Parity = SerialParity.None;
+                //    m_serialPort.StopBits = SerialStopBitCount.One;
+                //    m_serialPort.DataBits = 8;
+                //    m_serialPort.Handshake = SerialHandshake.None;
+                //    m_dataWriteObject = new DataWriter(m_serialPort.OutputStream);
+                //}
 
                 //6. Stepper & GPIO
-                pinsStepper1 = new GpioPin[4];
-                for (int i = 0; i <= 3; i++)
-                {
-                    pinsStepper1[i] = gpio.OpenPin(pins[i]);
-                    pinsStepper1[i].SetDriveMode(GpioPinDriveMode.Output);
-                }
+                //pinsStepper1 = new GpioPin[4];
+                //for (int i = 0; i <= 3; i++)
+                //{
+                //    pinsStepper1[i] = gpio.OpenPin(pins[i]);
+                //    pinsStepper1[i].SetDriveMode(GpioPinDriveMode.Output);
+                //}
 
 
                 //7. Receive
