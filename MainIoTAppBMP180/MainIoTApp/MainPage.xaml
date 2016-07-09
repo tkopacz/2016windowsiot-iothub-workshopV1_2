@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="MainIoTApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MainIoTApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="txtState" HorizontalAlignment="Left" Margin="0,133,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="350
+                   " Width="700" FontSize="21.333"/>
+        <TextBox x:Name="txtSPI" HorizontalAlignment="Left" Margin="266,73,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" FontSize="32" Width="166" TextChanged="txtSPI_TextChanged" IsEnabled="False"/>
+        <ToggleSwitch x:Name="tgSend" Header="Send" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" FontSize="21.333" Toggled="tgSend_Toggled" IsEnabled="False" />
+        <TextBox x:Name="txtAll" HorizontalAlignment="Left" Margin="534,73,0,0" TextWrapping="Wrap" Text="5000" VerticalAlignment="Top" FontSize="32" Width="166" TextChanged="txtAll_TextChanged" IsEnabled="False"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="474,77,0,0" TextWrapping="Wrap" Text="All :" VerticalAlignment="Top" FontSize="32"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="198,77,0,0" TextWrapping="Wrap" Text="SPI :" VerticalAlignment="Top" FontSize="32"/>
+
+    </Grid>
+</Page>
